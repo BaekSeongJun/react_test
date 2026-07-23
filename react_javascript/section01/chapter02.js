@@ -19,14 +19,17 @@ let _age = 30;
 console.log(_age);
 let $age = 30;
 console.log(_age);
+
 // 3-2. 숫자로 시작할 수 없다.
 let name1;
-let $2name;
+// let 2name;
+
 // 3-3. 예약어를 사용할 수 없다.
 // let if; //(x)
+
 // 4. 변수 명명 가이드
-let a = 1;
-let b = 2;
+let a = 1; //사용해도 무관하지만 가능하면 하지 않는것이 좋다.
+let b = 2; //사용해도 무관하지만 가능하면 하지 않는것이 좋다.
 let salesCount = 1;
 let refundCount = 1;
 let totalSalesCount = salesCount - refundCount;
