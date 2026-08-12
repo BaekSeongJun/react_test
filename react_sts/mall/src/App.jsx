@@ -1,11 +1,12 @@
 import "./App.css";
+import Root from "./router/Root";
+import { RouterProvider } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>react와 스프링부트 연동 쇼핑몰</h1>
-      </div>
+      <RouterProvider router={Root} />
     </>
   );
 }
