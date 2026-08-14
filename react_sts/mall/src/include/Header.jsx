@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -22,9 +23,19 @@ export default function Header() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">예비용</NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown
+              title="PRODUCTS"
+              className="bg-body-primary"
+              bg="primary"
+            >
+              <NavDropdown.Item href="/product/list">LIST</NavDropdown.Item>
+              <NavDropdown.Item href="/product/add">ADD</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">예비용</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Login</Nav.Link>
+            <Link to={"/member/login"}>Login</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
