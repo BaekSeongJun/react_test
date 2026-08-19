@@ -1,5 +1,5 @@
 import Header from "../../include/Header";
-import ReadComponent from "../../components/ReadComponent";
+import ReadComponent from "../../components/todo/ReadComponent";
 import { Container } from "react-bootstrap";
 import UseCustomMove from "../../hooks/UseCustomMove";
 

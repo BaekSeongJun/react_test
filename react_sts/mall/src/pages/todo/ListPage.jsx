@@ -1,18 +1,21 @@
 import Header from "../../include/Header";
-import ListComponent from "../../components/ListComponent";
+import ListComponent from "../../components/todo/ListComponent";
 import { Container } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+import UseCustomMove from "../../hooks/UseCustomMove";
 
 const ListPage = () => {
-  const [queryParams] = useSearchParams();
-  const page = queryParams.get("page") ? parseInt(queryParams.get("page")) : 1;
-  const size = queryParams.get("size") ? parseInt(queryParams.get("size")) : 10;
+  const { page, size, moveToList, moveToRead, refresh } = UseCustomMove();
   return (
     <Container>
       <Header />
       <div className="d-grid gap-2 mt-5">
-        page = {page} size = {size}
-        <ListComponent />
+        <ListComponent
+          page={page}
+          size={size}
+          moveToList={moveToList}
+          moveToRead={moveToRead}
+          refresh={refresh}
+        />
       </div>
     </Container>
   );

@@ -61,7 +61,16 @@ const UseCustomMove = () => {
     [nav, queryDefault],
   );
 
-  return { moveToList, moveToModify, moveToRead, page, size, tno, nav }; //moveToModify 추가
+  return {
+    moveToList,
+    moveToModify,
+    moveToRead,
+    page,
+    size,
+    tno,
+    nav,
+    refresh,
+  }; //moveToModify 추가
 };
 
 export default UseCustomMove;
