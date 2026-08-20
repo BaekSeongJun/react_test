@@ -1,9 +1,14 @@
 package com.hi.mallapi.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +33,19 @@ public class ProductController {
 		List<String> uploadFileNames = fileUtil.saveFiles(files);
 		productDTO.setUploadFileNames(uploadFileNames);
 		log.info(uploadFileNames);
+		return Map.of("RESULT", "SUCCESS");
+	}
+
+	@GetMapping("/api/products/view/{fileName}")
+	public ResponseEntity<Resource> viewFileGET(@PathVariable String fileName){
+		return fileUtil.getFile(fileName);
+	}
+
+	@GetMapping("/api/products/delete/{fileName}")
+	public Map<String, String> deleteFileGET(@PathVariable String fileName){
+		List<String> imageNameList = new ArrayList<>();
+		imageNameList.add(fileName);
+		fileUtil.deleteFiles(imageNameList);
 		return Map.of("RESULT", "SUCCESS");
 	}
 }

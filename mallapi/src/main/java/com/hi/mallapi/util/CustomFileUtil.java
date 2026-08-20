@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,5 +71,40 @@ public class CustomFileUtil {
 			}
 		} // end for
 		return uploadNames;
+	}
+
+	public ResponseEntity<Resource>  getFile(String fileName) {
+		Resource resource = new FileSystemResource(uploadPath+File.separator+ fileName);
+		if (!resource.exists()) {
+			resource = new FileSystemResource(uploadPath+File.separator+"default.jpg");
+		}
+		HttpHeaders headers = new HttpHeaders();
+		try {
+			// Files.probeContentType()은 파일 경로를 분석하여 MIME 타입을 자동 감지  jpg → image/jpeg,  png →
+			//image/png pdf → application/pdf  이 정보를 HTTP 응답 헤더에 Content-Type으로 추가한다
+			headers.add("Content-Type", Files.probeContentType(resource.getFile().toPath()));
+		} catch (Exception e) {
+			return ResponseEntity.internalServerError().build();
+		}
+
+		return ResponseEntity.ok().headers(headers).body(resource);
+	}
+
+	public void deleteFiles(List<String> fileNames) {
+		if (fileNames == null || fileNames.size() == 0){
+			return;
+		}
+		fileNames.forEach(fileName -> {
+			// 썸네일이 있는지 확인하고 삭제
+			String thumbnailFileName = "s_" + fileName;
+			Path thumbnailPath = Paths.get(uploadPath, thumbnailFileName);
+			Path filePath = Paths.get(uploadPath, fileName);
+			try {
+				Files.deleteIfExists(filePath);
+				Files.deleteIfExists(thumbnailPath);
+			} catch (IOException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		});
 	}
 }
