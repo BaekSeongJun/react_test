@@ -52,6 +52,7 @@ public class CustomFileUtil {
 		//업로드된 파일 => UUID_파일명변환 => 임시저장된 파일을 복사해서 붙여넣기
 		//UUID_파일명을 List<String>에 저장
 		for (MultipartFile multipartFile : files) {
+			if(multipartFile.getOriginalFilename().length() <= 0)  continue;
 			String savedName = UUID.randomUUID().toString() + "_" +
 				multipartFile.getOriginalFilename();
 			Path savePath = Paths.get(uploadPath, savedName);

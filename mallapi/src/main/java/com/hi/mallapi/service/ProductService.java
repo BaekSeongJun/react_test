@@ -9,4 +9,8 @@ import com.hi.mallapi.dto.ProductDTO;
 @Transactional
 public interface ProductService {
 	PageResponseDTO<ProductDTO> selectList(PageRequestDTO pageRequestDTO);
+	Long insert(ProductDTO productDTO);
+	ProductDTO select(Long pno);
+	void update(ProductDTO productDTO);
+	void delete(Long pno);
 }

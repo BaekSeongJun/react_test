@@ -15,7 +15,8 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hi.mallapi.domain.Product;
-
+import com.hi.mallapi.dto.ProductDTO;
+import com.hi.mallapi.service.ProductService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -24,6 +25,10 @@ import lombok.extern.log4j.Log4j2;
 public class ProductRepositoryTests {
 	@Autowired
 	ProductRepository productRepository;
+
+	@Autowired
+	ProductService productService;
+
 	@Test
 	public void testInsert() {
 		for (int i = 0; i < 10; i++) {
@@ -86,5 +91,28 @@ public class ProductRepositoryTests {
 		Page<Object[]> result = productRepository.selectList(pageable);
 		// java.util
 		result.getContent().forEach(arr -> log.info(Arrays.toString(arr)));
+	}
+
+	@Test
+	public void testInsert2() {
+		ProductDTO productDTO = ProductDTO.builder()
+			.pname("새로운 상품")
+			.pdesc("신규 추가 상품입니다.")
+			.price(1000)
+			.build();
+		// uuid가 있어야함
+		productDTO.setUploadFileNames(
+			java.util.List.of(UUID.randomUUID() + "_" + "Test1.jpg", UUID.randomUUID()
+				+ "_" + "Test2.jpg"));
+		productService.insert(productDTO);
+	}
+
+	@Test
+	public void testRead3() {
+		// 실제 존재하는 번호로 테스트(DB에서 확인)
+		Long pno = 109L;
+		ProductDTO productDTO = productService.select(pno);
+		log.info(productDTO);
+		log.info(productDTO.getUploadFileNames());
 	}
 }
