@@ -1,7 +1,13 @@
 import Header from "../include/Header";
 import { Container } from "react-bootstrap";
+import UseCustomLogin from "../hooks/UseCustomLogin";
 
 const AboutPage = () => {
+  const { isLogin, moveToPath } = UseCustomLogin();
+  if (!isLogin) {
+    alert("회원전용페이지");
+    moveToPath("/");
+  }
   return (
     <Container>
       <Header />

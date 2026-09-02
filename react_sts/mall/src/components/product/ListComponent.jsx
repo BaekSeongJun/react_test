@@ -2,7 +2,7 @@ import { productGetList } from "../../api/productApi";
 import { useState, useEffect } from "react";
 import { Container, Card, Row } from "react-bootstrap";
 import PageComponent from "../commons/PageComponent";
-import { API_SERVER_HOST } from "../../api/productApi";
+import { API_SERVER_HOST } from "../../api/todoApi";
 import FetchingModal from "../commons/FetchingModal";
 import { exceptionHandle } from "../commons/exceptionHandle";
 

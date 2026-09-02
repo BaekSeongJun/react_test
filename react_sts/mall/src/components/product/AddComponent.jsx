@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { productPostAdd } from "../../api/productApi";
+import { productPostAdd } from "../../api/todoApi";
 import InfoModal from "../commons/InfoModal";
 import FetchingModal from "../commons/FetchingModal";
 
