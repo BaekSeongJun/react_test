@@ -25,6 +25,7 @@ const ListComponent = ({
   size,
   moveToProductList,
   moveToProductRead,
+  exceptionHandle,
   refresh,
 }) => {
   const [serverData, setServerData] = useState(initState);

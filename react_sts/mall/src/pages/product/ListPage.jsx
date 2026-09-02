@@ -1,11 +1,13 @@
 import Header from "../../include/Header";
 import ListComponent from "../../components/product/ListComponent";
 import { Container } from "react-bootstrap";
+import UseCustomLogin from "../../hooks/UseCustomLogin";
 import UseCustomMove from "../../hooks/UseCustomMove";
 
 const ListPage = () => {
   const { page, size, moveToProductList, moveToProductRead, refresh } =
     UseCustomMove();
+  const { exceptionHandle } = UseCustomLogin();
   return (
     <Container>
       <Header />
@@ -15,6 +17,8 @@ const ListPage = () => {
           size={size}
           moveToProductList={moveToProductList}
           moveToProductRead={moveToProductRead}
+          refresh={refresh}
+          exceptionHandle={exceptionHandle}
         />
       </div>
     </Container>
