@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwtAxios from "../util/jwtUtil";
 import { API_SERVER_HOST } from "./todoApi";
 // export const API_SERVER_HOST = "http://localhost:8080";
 
@@ -14,5 +15,12 @@ export const loginPost = async (loginParam) => {
 
   const res = await axios.post(`${prefix}/login`, form, header);
 
+  return res.data;
+};
+
+export const modifyMember = async (member) => {
+  console.log("modify Member call");
+  const res = await axios.put(`${prefix}/modify`, member);
+  console.log("response 성공" + res);
   return res.data;
 };

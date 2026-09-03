@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FloatingLabel, Form, Button } from "react-bootstrap";
+import KakaoLoginComponent from "./KakaoLoginComponent";
 
 const initState = {
   email: "",
@@ -56,6 +57,7 @@ export default function LoginComponent({ doLogin, moveToPath }) {
           로그인
         </Button>
       </div>
+      <KakaoLoginComponent />
     </>
   );
 }

@@ -46,4 +46,5 @@ public class Member {
 		this.social = social;
 	}
 
+
 }

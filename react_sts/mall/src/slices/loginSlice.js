@@ -25,7 +25,7 @@ const loginSlice = createSlice({
     login: (state, action) => {
       console.log("로그인....................");
       const loginParam = action.payload;
-      return { email: loginParam.email };
+      return loginParam;
     },
     logout: (state, action) => {
       console.log("로그아웃....................");

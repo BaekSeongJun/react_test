@@ -4,7 +4,6 @@ import { Container, Card, Row } from "react-bootstrap";
 import PageComponent from "../commons/PageComponent";
 import { API_SERVER_HOST } from "../../api/todoApi";
 import FetchingModal from "../commons/FetchingModal";
-import { exceptionHandle } from "../commons/exceptionHandle";
 
 const host = API_SERVER_HOST;
 const initState = {
