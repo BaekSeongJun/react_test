@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getAccessToken, getMemberWithAccessToken } from "../../api/kakaoApi";
 import { useDispatch } from "react-redux";
 import { login } from "../../slices/loginSlice";
@@ -10,8 +10,13 @@ const KakaoRedirectPage = () => {
   const authCode = searchParams.get("code");
   const dispatch = useDispatch();
   const { moveToPath } = UseCustomLogin();
+  const calledRef = useRef(false);
 
   useEffect(() => {
+    if (calledRef.current) {
+      return;
+    }
+    calledRef.current = true;
     getAccessToken(authCode).then((accessToken) => {
       console.log(accessToken);
       getMemberWithAccessToken(accessToken).then((memberInfo) => {

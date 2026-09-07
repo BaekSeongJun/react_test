@@ -25,6 +25,9 @@ const loginSlice = createSlice({
     login: (state, action) => {
       console.log("로그인....................");
       const loginParam = action.payload;
+      if (!loginParam.error) {
+        setCookie("member", loginParam, 1);
+      }
       return loginParam;
     },
     logout: (state, action) => {
@@ -39,7 +42,7 @@ const loginSlice = createSlice({
         console.log("fulfilled : 완료");
         const payload = action.payload;
         if (!payload.error) {
-          setCookie("member", JSON.stringify(payload), 1);
+          setCookie("member", payload, 1);
         }
         return payload;
       })

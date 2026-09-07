@@ -48,27 +48,25 @@ const ListComponent = ({
         {fetching ? <FetchingModal /> : <></>}
         <Row className="display-content-around mt-5 gap-4">
           {serverData.dtoList.map((product) => (
-            <>
-              <Card
-                className="p-3"
-                style={{ width: "14rem", height: "20rem" }}
-                key={product.pno}
-                onClick={() => moveToProductRead(product.pno)}
-              >
-                <Card.Body>
-                  <Card.Title>PNO :{product.pno}</Card.Title>
-                  <Card.Title>NAME : {product.pname}</Card.Title>
-                  <Card.Title>PRICE : {product.price}원</Card.Title>
-                  <Card.Text></Card.Text>
-                </Card.Body>
-                <img
-                  alt="product"
-                  width={150}
-                  height={150}
-                  src={`${host}/api/products/view/s_${product.uploadFileNames[0]} `}
-                />
-              </Card>
-            </>
+            <Card
+              className="p-3"
+              style={{ width: "14rem", height: "20rem" }}
+              key={product.pno}
+              onClick={() => moveToProductRead(product.pno)}
+            >
+              <Card.Body>
+                <Card.Title>PNO :{product.pno}</Card.Title>
+                <Card.Title>NAME : {product.pname}</Card.Title>
+                <Card.Title>PRICE : {product.price}원</Card.Title>
+                <Card.Text></Card.Text>
+              </Card.Body>
+              <img
+                alt="product"
+                width={150}
+                height={150}
+                src={`${host}/api/products/view/s_${product.uploadFileNames[0]} `}
+              />
+            </Card>
           ))}
         </Row>
         <PageComponent serverData={serverData} moveToList={moveToProductList} />

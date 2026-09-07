@@ -21,6 +21,7 @@ const KakaoRedirectPage = lazy(
   () => import("../pages/member/KakaoRedirectPage"),
 );
 const MemberModifyPage = lazy(() => import("../pages/member/ModifyPage"));
+const CartPage = lazy(() => import("../pages/cart/CartPage"));
 
 const Root = createBrowserRouter([
   {
@@ -132,6 +133,14 @@ const Root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <MemberModifyPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/cart/read",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <CartPage />
       </Suspense>
     ),
   },

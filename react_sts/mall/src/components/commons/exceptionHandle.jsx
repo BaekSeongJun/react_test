@@ -1,6 +1,5 @@
 export const exceptionHandle = (err) => {
   console.error("API Error caught:", err);
-  setFetching(false);
   if (err.response) {
     const status = err.response.status;
     const message =

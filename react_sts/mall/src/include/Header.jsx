@@ -17,8 +17,8 @@ export default function Header() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">MAIN</Nav.Link>
-            <Nav.Link href="/about">ABOUT</Nav.Link>
+            <Nav.Link as={Link} to="/">MAIN</Nav.Link>
+            <Nav.Link as={Link} to="/about">ABOUT</Nav.Link>
             {loginState.email ? (
               <>
                 <NavDropdown
@@ -26,8 +26,8 @@ export default function Header() {
                   className="bg-body-primary"
                   bg="primary"
                 >
-                  <NavDropdown.Item href="/todo/list">LIST</NavDropdown.Item>
-                  <NavDropdown.Item href="/todo/add">ADD</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/todo/list">LIST</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/todo/add">ADD</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">예비용</NavDropdown.Item>
                 </NavDropdown>
@@ -36,11 +36,12 @@ export default function Header() {
                   className="bg-body-primary"
                   bg="primary"
                 >
-                  <NavDropdown.Item href="/product/list">LIST</NavDropdown.Item>
-                  <NavDropdown.Item href="/product/add">ADD</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/list">LIST</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/add">ADD</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">예비용</NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Link as={Link} to="/cart/read">CART</Nav.Link>
               </>
             ) : (
               <></>
