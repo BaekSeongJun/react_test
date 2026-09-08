@@ -1,18 +1,29 @@
-import { useEffect } from "react";
-import UseCustomLogin from "../../hooks/UseCustomLogin";
+import { useEffect, useMemo } from "react";
 import { Table, Container } from "react-bootstrap";
-import useCustomCart from "../../hooks/useCustomCart";
 import CartItemComponent from "./CarItemComponent";
+import UseCustomMove from "../../hooks/UseCustomMove";
 
-const CartComponent = () => {
-  const { isLogin, loginState } = UseCustomLogin();
-  const { refreshCart, cartItems, changeCart } = useCustomCart();
-
+const CartComponent = ({
+  isLogin,
+  loginState,
+  refreshCart,
+  cartItems,
+  changeCart,
+}) => {
   useEffect(() => {
     if (isLogin) {
       refreshCart();
     }
   }, [isLogin]);
+
+  const { moveToProductList } = UseCustomMove();
+  const caculateTotal = useMemo(() => {
+    let total = 0;
+    for (const item of cartItems) {
+      total += item.price * item.qty;
+    }
+    return total;
+  }, [cartItems]);
 
   return (
     <Container className="mt-5">
@@ -48,7 +59,18 @@ const CartComponent = () => {
           ))}
         </tbody>
       </Table>
-      <h4>총 합계: {} 원</h4>
+      <h4>총 합계: {caculateTotal} 원</h4>
+      <div className="text-center">
+        <button
+          className="btn btn-info"
+          type="button"
+          onClick={() => {
+            moveToProductList();
+          }}
+        >
+          리스트보기
+        </button>
+      </div>
     </Container>
   );
 };

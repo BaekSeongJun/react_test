@@ -1,5 +1,6 @@
 import { Button, Image } from "react-bootstrap";
 import { API_SERVER_HOST } from "../../api/todoApi";
+import UseCustomMove from "../../hooks/UseCustomMove";
 
 const host = API_SERVER_HOST;
 
@@ -11,9 +12,12 @@ const CartItemComponent = ({
   qty,
   imageFile,
   changeCart,
+  email,
 }) => {
+  const { page, size, moveToProductRead } = UseCustomMove();
+
   const handleClickQty = (amount) => {
-    const param = { cino: cino, pno: pno, qty: qty + amount };
+    const param = { email, cino: cino, pno: pno, qty: qty + amount };
     changeCart(param);
   };
 
@@ -31,7 +35,7 @@ const CartItemComponent = ({
               objectFit: "cover",
               cursor: "pointer",
             }}
-            onClick={() => moveProductToRead(pno)}
+            onClick={() => moveToProductRead(pno)}
           />
         </td>
         <td className="text-center align-middle">{cino}</td>
